@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARIS TEAM CARS | Car Rental</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1428 100%);
+  color:#fff;
+  overflow-x:hidden;
+  line-height:1.6;
+}
+
+/* ===== HEADER/NAV ===== */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:15px 5%;
+  background:rgba(10,14,39,0.95);
+  border-bottom:1px solid rgba(56,189,248,0.3);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+  backdrop-filter:blur(10px);
+}
+
+header h1{
+  font-size:1.5rem;
+  color:#38bdf8;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+  list-style:none;
+}
+
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:500;
+  transition:0.3s;
+  position:relative;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  bottom:-5px;
+  left:0;
+  width:0;
+  height:2px;
+  background:#38bdf8;
+  transition:0.3s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+/* ===== HERO ===== */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    linear-gradient(135deg,rgba(10,14,39,0.7),rgba(10,14,39,0.7)),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70") center/cover;
+  margin-top:60px;
+}
+
+.hero h1{
+  font-size:4.5rem;
+  font-weight:800;
+  letter-spacing:3px;
+  margin-bottom:20px;
+  animation:slideDown 0.8s ease-out;
+}
+
+.hero span{
+  background:linear-gradient(135deg, #38bdf8, #0ea5e9);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero p{
+  margin:20px 0 40px 0;
+  font-size:1.3rem;
+  opacity:.95;
+  animation:slideUp 0.8s ease-out 0.2s both;
+}
+
+@keyframes slideDown{
+  from{
+    opacity:0;
+    transform:translateY(-30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes slideUp{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.btn{
+  padding:16px 40px;
+  background:linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color:#020617;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:700;
+  transition:0.3s ease;
+  border:2px solid transparent;
+  cursor:pointer;
+  display:inline-block;
+  box-shadow:0 8px 25px rgba(56,189,248,0.3);
+  position:relative;
+  overflow:hidden;
+}
+
+.btn::before{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:0;
+  height:0;
+  background:rgba(255,255,255,0.2);
+  border-radius:50%;
+  transform:translate(-50%, -50%);
+  transition:width 0.6s, height 0.6s;
+}
+
+.btn:hover::before{
+  width:300px;
+  height:300px;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 35px rgba(56,189,248,0.5);
+}
+
+/* ===== SECTION ===== */
+section{
+  padding:100px 10%;
+  position:relative;
+}
+
+section:nth-child(even){
+  background:rgba(56,189,248,0.02);
+}
+
+.title{
+  text-align:center;
+  margin-bottom:80px;
+}
+
+.title h2{
+  font-size:3.2rem;
+  margin-bottom:15px;
+  font-weight:800;
+}
+
+.title span{
+  background:linear-gradient(135deg, #38bdf8, #0ea5e9);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.title p{
+  font-size:1.1rem;
+  opacity:0.8;
+  margin-top:10px;
+}
+
+/* ===== REEL FLEET ===== */
+.reel{
+  display:flex;
+  gap:30px;
+  overflow:hidden;
+  position:relative;
+  width:100%;
+}
+
+.reel-track{
+  display:flex;
+  gap:30px;
+  animation:scroll 40s linear infinite;
+  will-change:transform;
+}
+
+.car{
+  min-width:300px;
+  height:220px;
+  border-radius:15px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 15px 40px rgba(56,189,248,0.1);
+  border:1px solid rgba(56,189,248,0.2);
+  transition:0.3s;
+  flex-shrink:0;
+}
+
+.car:nth-child(1){opacity:1}
+.car:nth-child(2){opacity:1}
+.car:nth-child(3){opacity:1}
+.car:nth-child(4){opacity:1}
+.car:nth-child(5){opacity:1}
+.car:nth-child(6){opacity:1}
+.car:nth-child(7){opacity:1}
+.car:nth-child(8){opacity:1}
+.car:nth-child(9){opacity:1}
+.car:nth-child(10){opacity:1}
+
+.car img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.car:hover{
+  transform:translateY(-8px);
+  box-shadow:0 25px 50px rgba(56,189,248,0.2);
+}
+
+.car:hover img{
+  transform:scale(1.1);
+}
+
+.car::after{
+  content:"Premium Car";
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:15px 10px;
+  background:linear-gradient(transparent,rgba(0,0,0,0.8));
+  font-weight:700;
+  font-size:0.95rem;
+  letter-spacing:0.5px;
+  transition:0.3s;
+}
+
+@keyframes scroll{
+  0%{
+    transform:translateX(0);
+  }
+  100%{
+    transform:translateX(calc(-300px * 5 - 30px * 5));
+  }
+}
+
+@keyframes carFloat{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ===== INFO CARDS ===== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(56,189,248,.05));
+  padding:35px;
+  border-radius:15px;
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(56,189,248,0.2);
+  transform:translateY(40px);
+  opacity:0;
+  transition:0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:3px;
+  background:linear-gradient(90deg, #38bdf8, transparent);
+  opacity:0;
+  transition:0.3s;
+}
+
+.card:hover::before{
+  opacity:1;
+}
+
+.card.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.card:hover{
+  border-color:rgba(56,189,248,0.5);
+  box-shadow:0 10px 40px rgba(56,189,248,0.15);
+}
+
+.card h3{
+  color:#38bdf8;
+  margin-bottom:15px;
+  font-size:1.3rem;
+  font-weight:700;
+}
+
+.card p{
+  opacity:0.85;
+  line-height:1.7;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:linear-gradient(135deg, #010313, #0a0e27);
+  padding:50px 10%;
+  text-align:center;
+  font-size:.9rem;
+  opacity:.85;
+  border-top:1px solid rgba(56,189,248,0.2);
+  margin-top:60px;
+}
+
+footer a{
+  color:#38bdf8;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+footer a:hover{
+  opacity:0.7;
+  text-decoration:underline;
+}
+
+.footer-content{
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.footer-content p{
+  margin:10px 0;
+}
+
+@keyframes carFloat{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero h1{
+    font-size:2.5rem;
+    letter-spacing:1px;
+  }
+  
+  .hero p{
+    font-size:1rem;
+  }
+  
+  .title h2{
+    font-size:2rem;
+  }
+  
+  .nav-links{
+    gap:15px;
+    font-size:0.9rem;
+  }
+  
+  .car{
+    min-width:250px;
+    height:180px;
+  }
+  
+  .card{
+    padding:25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <h1>ARIS TEAM CARS</h1>
+  <ul class="nav-links">
+    <li><a href="#fleet">Fleet</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+  </ul>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>ARIS <span>TEAM</span> CARS</h1>
+    <p>Premium Car Rental – No Driver Required</p>
+    <a href="#fleet" class="btn">View Our Fleet</a>
+  </div>
+</div>
+
+<!-- FLEET REEL -->
+<section id="fleet">
+  <div class="title">
+    <h2>Our <span>Car Fleet</span></h2>
+    <p>Modern, clean and reliable vehicles</p>
+  </div>
+
+  <div class="reel">
+    <div class="reel-track">
+      <!-- Images repeat for infinite reel -->
+      <div class="car"><img src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&h=400&fit=crop" alt="Sport Car" /></div>
+      <div class="car"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&h=400&fit=crop" alt="Luxury Car" /></div>
+      <div class="car"><img src="https://images.unsplash.com/photo-1605559424843-9e4c3ca4b7f7?w=600&h=400&fit=crop" alt="SUV" /></div>
+      <div class="car"><img src="https://images.unsplash.com/photo-1549399542-7e3f8b83ad38?w=600&h=400&fit=crop" alt="Sedan" /></div>
+      <div class="car"><img src="https://images.unsplash.com/photo-1600856062241-98e5dba7214c?w=600&h=400&fit=crop" alt="BMW" /></div>
+
+      <div class="car"><img src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=600&h=400&fit=crop" alt="Sport Car" /></div>
+      <div class="car"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&h=400&fit=crop" alt="Luxury Car" /></div>
+      <div class="car"><img src="https://images.unsplash.com/photo-1605559424843-9e4c3ca4b7f7?w=600&h=400&fit=crop" alt="SUV" /></div>
+      <div class="car"><img src="https://images.unsplash.com/photo-1549399542-7e3f8b83ad38?w=600&h=400&fit=crop" alt="Sedan" /></div>
+      <div class="car"><img src="https://images.unsplash.com/photo-1600856062241-98e5dba7214c?w=600&h=400&fit=crop" alt="BMW" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="title">
+    <h2>About <span>Us</span></h2>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Business Activity</h3>
+      <p>Car rental services without driver, flexible and affordable.</p>
+    </div>
+
+    <div class="card">
+      <h3>Company Info</h3>
+      <p>
+        Legal form: LLC (SARL)<br>
+        Capital: 100,000 MAD
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Registration</h3>
+      <p>
+        RC: 7775 – Taroudant Court<br>
+        ICE: 002837552000091<br>
+        DUNS: 536000827
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Location</h3>
+      <p>
+        Shop N°09 Kissariat El Khiati<br>
+        Avenue Bir Anzarane<br>
+        Taroudant, Morocco
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:40px;">
+    <a href="privacy.html" class="btn">Privacy Policy</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 ARIS TEAM CARS · All rights reserved ·
+  <a href="privacy.html">Privacy Policy</a>
+</footer>
+
+<script>
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+  const trigger = window.innerHeight * 0.85;
+  cards.forEach(card => {
+    if(card.getBoundingClientRect().top < trigger){
+      card.classList.add('show');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
